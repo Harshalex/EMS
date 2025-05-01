@@ -1,0 +1,20 @@
+.Fs16_FW600 {
+  font-size: 16px;
+  font-weight: 600;
+}
+.Fs13_FW600 {
+  font-size: 13px;
+  font-weight: 600;
+}
+.grey-subtext {
+  color: #8a92a6;
+}
+.grey {
+  color: #51515b;
+}
+.black {
+  color: #111928;
+}
+.white {
+  color: #ffff;
+}
