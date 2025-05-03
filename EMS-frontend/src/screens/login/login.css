@@ -1,0 +1,132 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(220, 243, 254, 1); /* light blue */
+  padding: 20px;
+}
+
+.login-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1000px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-left {
+  flex: 1;
+  background-color: white;
+  padding: 40px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.login-title {
+  margin: 30px 0 20px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.input-group .icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.login-input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 8px 0;
+}
+
+.forgot-link a {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.login-button {
+  margin: 20px 0;
+  background-color:rgba(33, 86, 117, 1) ;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.login-button:hover{
+  background-color:rgb(16, 58, 82) ;
+}
+
+.login-help {
+  font-size: 14px;
+  color: #888;
+}
+
+.text-help {
+  color: orange;
+}
+
+/* Right Side */
+.login-right {
+  width: 40%;
+  background-color: #002b5b;
+  color: white;
+  position: relative;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.login-right .background-img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.second-img{
+  position: absolute;
+  z-index: 2;
+  right: -75px;
+  bottom: 0;
+  height: 90%;
+  object-fit: cover;
+}
+
+@media (min-width: 992px) {
+  .login-right {
+    display: flex;
+  }
+}
+
+.text-box h5 {
+  z-index: 2;
+  position: relative;
+}
+
+.highlight {
+  color: #ffc107; /* Bootstrap warning */
+  font-weight: bold;
+}
+
+.woman-img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-height: 100%;
+  max-width: 100%;
+  z-index: 1;
+}
+
