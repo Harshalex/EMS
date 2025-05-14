@@ -10,6 +10,7 @@ const app = express();
 dotenv.config();
 
 const port = process.env.PORT || 3000;
+const ip = process.env.IP || "192.168.1.43";
 
 app.use(morgan("common"));
 app.use(express.json()); // Already handles JSON bodies
@@ -23,7 +24,7 @@ app.get("/", (req, res) => {
   res.send("We are on the home page");
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(port,ip, () => {
+  console.log(`Server running on port /${ip}/${port}`);
   dbConnect();
 });

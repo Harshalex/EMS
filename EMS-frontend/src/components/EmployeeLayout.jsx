@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { imagePath } from "../constants/imagePath";
 
 const EmployeeLayout = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,10 +16,15 @@ const EmployeeLayout = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth <= 768;
-      setIsMobile(mobile);
-      if (!mobile) setIsMobileMenuOpen(false);
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 768) {
+        setIsSidebarCollapsed(true);
+      } else {
+        setIsSidebarCollapsed(false);
+      }
     };
+
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -51,18 +57,8 @@ const EmployeeLayout = () => {
               <img
                 src={isCollapsed ? imagePath.MobileLogo : imagePath.Logo}
                 className="logo-container-img"
-                alt="Happy Puppy Logo"
+                alt=" Logo"
               />
-              <div onClick={toggleSidebar} className="collapse-icon">
-                <img
-                  src={
-                    isCollapsed
-                      ? imagePath.CollapseRight
-                      : imagePath.CollapseLeft
-                  }
-                  alt="Toggle Sidebar"
-                />
-              </div>
             </div>
             <hr className="hr-line" />
 
@@ -175,7 +171,7 @@ const EmployeeLayout = () => {
           )}
 
           <main className="main-panel">
-            <header className="cc-fixed-header">
+            <header className="cc-fixed-header  custom-shadow bg-white  border-bottom">
               <div className="d-flex justify-content-end align-items-center">
                 <div className="d-flex gap-2">
                   <div>
@@ -187,13 +183,19 @@ const EmployeeLayout = () => {
                     />
                   </div>
                   <div>
-                    <p className="profile-name">Helen Bator</p>
-                    <p className="profile-role">Admin</p>
+                    <p className="profile-name">{user?.name}</p>
+                    <p className="profile-role">{user?.role}</p>
                   </div>
                 </div>
               </div>
             </header>
-            <div className="main-panel-scrollable">
+            <div
+              className="main-panel-scrollable"
+              style={{
+                backgroundColor: "white",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+              }}
+            >
               <Outlet />
             </div>
           </main>

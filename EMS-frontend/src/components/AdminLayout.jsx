@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { imagePath } from "../constants/imagePath";
+import "../constants/global.css";
 
 const AdminLayout = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activePath, setActivePath] = useState("/dashboard");
   const { pathname } = useLocation();
-
   useEffect(() => {
     setActivePath(pathname);
   }, [pathname]);
 
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth <= 768;
-      setIsMobile(mobile);
-      if (!mobile) setIsMobileMenuOpen(false);
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 768) {
+        setIsSidebarCollapsed(true);
+      } else {
+        setIsSidebarCollapsed(false);
+      }
     };
+
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -51,18 +57,8 @@ const AdminLayout = () => {
               <img
                 src={isCollapsed ? imagePath.MobileLogo : imagePath.Logo}
                 className="logo-container-img"
-                alt="Happy Puppy Logo"
+                alt=" Logo"
               />
-              <div onClick={toggleSidebar} className="collapse-icon">
-                <img
-                  src={
-                    isCollapsed
-                      ? imagePath.CollapseRight
-                      : imagePath.CollapseLeft
-                  }
-                  alt="Toggle Sidebar"
-                />
-              </div>
             </div>
             <hr className="hr-line" />
 
@@ -134,7 +130,7 @@ const AdminLayout = () => {
                       <img
                         src={
                           activePath === "/admin/reports"
-                            ? imagePath.ProjectActive
+                            ? imagePath.ReportActive
                             : imagePath.ReportsInActive
                         }
                       />
@@ -173,8 +169,8 @@ const AdminLayout = () => {
           )}
 
           <main className="main-panel">
-            <header className="cc-fixed-header">
-              <div className="d-flex justify-content-end align-items-center">
+            <header className="cc-fixed-header custom-shadow bg-white  border-bottom ">
+              <div className="d-flex justify-content-end align-items-center px-3 ">
                 <div className="d-flex gap-2">
                   <div>
                     <img
@@ -185,13 +181,22 @@ const AdminLayout = () => {
                     />
                   </div>
                   <div>
-                    <p className="profile-name">Helen Bator</p>
-                    <p className="profile-role">Admin</p>
+                    <p className="profile-name mb-0">{user?.name}</p>
+                    <p
+                      className="profile-role mb-0 text-muted"
+                      style={{ fontSize: "0.85rem" }}
+                    >
+                      {user?.role}
+                    </p>
                   </div>
                 </div>
               </div>
             </header>
-            <div className="main-panel-scrollable">
+
+            <div
+              className="main-panel-scrollable "
+              style={{ backgroundColor: "white" }}
+            >
               <Outlet />
             </div>
           </main>
@@ -202,3 +207,26 @@ const AdminLayout = () => {
 };
 
 export default AdminLayout;
+
+// useEffect(() => {
+//   const handleResize = () => {
+//     const mobile = window.innerWidth <= 768;
+//     setIsMobile(mobile);
+//     if (!mobile) setIsMobileMenuOpen(false);
+//   };
+//   window.addEventListener("resize", handleResize);
+//   return () => window.removeEventListener("resize", handleResize);
+// }, []);
+
+{
+  /* <div onClick={toggleSidebar} className="collapse-icon">
+                <img
+                  src={
+                    isCollapsed
+                      ? imagePath.CollapseRight
+                      : imagePath.CollapseLeft
+                  }
+                  alt="Toggle Sidebar"
+                />
+              </div> */
+}

@@ -1,0 +1,218 @@
+.dashboard-container {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .heading {
+    font-size: 34px;
+    font-weight: 500;
+  }
+  
+  .subheading {
+    color: #6b7280;
+    margin-bottom: 15px;
+  }
+  
+  .card-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-block: 20px;
+  }
+  
+  .card-row-left {
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+  }
+
+  .card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .chart-card{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 30px;
+  }
+  
+  .chart-top{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+  }
+
+  .chart-top select {
+    border: none;
+    outline: none;
+    background-color: white;
+    color: rgb(109, 103, 103);
+    padding-right: 15px;
+  }
+
+  .bar-card{
+    width: 54%;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid rgb(238, 230, 230);
+  }
+
+  .chart-card,
+  .pie-card {
+    flex: 1 1 48%;
+    min-width: 300px;
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  /* .pie-card{
+    width: 42%;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid rgb(238, 229, 229);
+  } */
+  .pie-card .pie-card-chart{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .stat-card p {
+    font-weight: 600;
+  }
+  
+  .stat-card h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: rgba(33, 86, 117, 1);
+    margin: 10px 0;
+  }
+  
+  .positive {
+    color: green;
+  }
+  
+  .negative {
+    color: orange;
+  }
+  
+ 
+  .project-summary {
+    width: 55%;
+    padding-block: 20px;
+  }
+
+  .project-summary .project-summary-head{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(187, 169, 169);
+    padding-bottom: 15px;
+  }
+
+  .project-summary .project-summary-head p {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  .project-summary .project-summary-main {
+    margin-top: 10px;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .project-summary .pink {
+    color: #d63384;
+  }
+  .project-summary .blue {
+    color: #0d6efd;
+  }
+  .project-summary .green {
+    color: #28a745;
+  }
+  .project-summary .orange {
+    color: #fd7e14;
+  }
+  
+  .members {
+    display: flex;
+    margin-top: 10px;
+  }
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-right: 5px;
+  }
+ 
+  .title{
+font-weight: 600;
+font-size: 18px;
+line-height: 100%;
+letter-spacing: 0px;
+  }
+
+  @media (max-width : 960px) {
+    .card-row {
+      flex-direction: column;
+     }
+     .card-row-left {
+      width: 100%;
+    }
+    .project-summary {
+      width: 100%;
+    }
+    .bar-card{
+      width: 100%;
+    }
+    .pie-card{
+      width: 100%;
+    }
+  }
+
+
+@media (max-width: 600px) {
+  .card-row {
+    flex-direction: column;
+  }
+
+  .chart-card,
+  .pie-card {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .pie-card-chart {
+    height: 250px; 
+  }
+}
+
+  @media (max-width : 480px) {
+    .heading {
+      font-size: 1.2rem;
+    }
+    
+    .subheading {
+      font-size: 0.8rem;
+      margin-bottom: 5px;
+    }
+    .card-row-left {
+     flex-direction: column;
+     gap: 12px;
+    }
+  }
+  

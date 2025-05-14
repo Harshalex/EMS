@@ -1,0 +1,67 @@
+Employee APIs (Admin):
+GET /api/employees?page={page}&department={department}
+Returns a paginated list of employees, filtered by department.
+Response: { employees: [{ id, name, email, department, status }], totalPages }
+POST /api/employees
+Adds a new employee.
+Request: { name, email, department, status }
+Response: { id, name, email, department, status }
+PUT /api/employees/{id}
+Updates an employee’s details.
+Request: { name, email, department, status }
+Response: { id, name, email, department, status }
+DELETE /api/employees/{id}
+Deletes an employee.
+Response: { success: true }
+Project APIs (Admin and Employee):
+GET /api/projects?page={page}&status={status}
+Returns a paginated list of projects, filtered by status.
+Response: { projects: [{ id, name, client, status, teamMembers, hours }], totalPages }
+GET /api/projects/my
+Returns projects assigned to the current employee.
+Response: { projects: [{ id, name, client, hours, status, progress, teamMembers }] }
+POST /api/projects
+Adds a new project.
+Request: { name, client, status, teamMembers }
+Response: { id, name, client, status, teamMembers }
+PUT /api/projects/{id}
+Updates a project’s details.
+Request: { name, client, status, teamMembers }
+Response: { id, name, client, status, teamMembers }
+Time Entry APIs (Employee):
+GET /api/time-entries
+Returns the current employee’s time entries.
+Response: { timeEntries: [{ id, date, project, startTime, endTime, hours }] }
+POST /api/time-entries
+Adds a new time entry.
+Request: { project, startTime, endTime, description }
+Response: { id, date, project, startTime, endTime, hours }
+PUT /api/time-entries/{id}
+Updates a time entry.
+Request: { project, startTime, endTime, description }
+Response: { id, date, project, startTime, endTime, hours }
+Report APIs (Admin and Employee):
+GET /api/reports/dashboard
+Returns data for the admin dashboard (total employees, hours logged, active projects, etc.).
+Response: { totalEmployees, hoursLogged, activeProjects, weeklyHours, hoursByProject }
+GET /api/reports/time?startDate={startDate}&endDate={endDate}&project={project}&employee={employee}
+Returns time report data, filtered by date range, project, and employee.
+Response: { totalHours, avgHoursPerDay, activeEmployees, hoursByProject, hoursByClient }
+GET /api/reports/weekly?week={week}
+Returns weekly activity data for the employee.
+Response: { weeklyActivity, productiveTime, researchActivity, timesheet, timeDistribution }
+
+Explanation of the Setup
+Why We Created Slices
+Employee Slice: Manages pagination (currentPage) and the department filter (departmentFilter) for the employee list. RTK Query fetches the employee data, but the UI state for pagination and filtering is local.
+Project Slice: Similarly, manages pagination and status filter for the project list.
+Time Entry Slice: Manages the form state for creating a new time entry. This allows the user to input data (e.g., project, start time) before submitting it to the API via RTK Query.
+Reports Slice: Manages the filters for the time reports screen (date range, project, employee). These filters are used as query parameters for the RTK Query getTimeReports endpoint.
+How It Works with RTK Query
+RTK Query: Handles all API data (e.g., the list of employees, projects, time entries, and report data). It provides hooks like useGetEmployeesQuery to fetch and cache this data.
+Slices: Manage local UI state that isn’t directly tied to API responses, such as filters, pagination, and form data.
+Integration: In the AdminDashboard.js example, we use useGetDashboardDataQuery to fetch data from the API, and we use the reportsSlice to manage filter state. The filter state can then be passed to other RTK Query hooks (e.g., useGetTimeReportsQuery) to fetch filtered data.
+Benefits of This Approach
+Separation of Concerns: RTK Query handles API data, while slices handle UI state. This keeps the code organized.
+Scalability: If you need to add more UI state (e.g., a modal toggle), you can easily extend the slices.
+Reusability: The slices can be used across multiple components (e.g., the same filter state can be used in both admin and employee screens).

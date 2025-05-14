@@ -1,0 +1,47 @@
+.emp-project-cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+.project-card {
+    background-color: #e8f9fd;
+    border-radius: 16px;
+    padding: 35px 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 transparent;
+    transform: scale(1);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .project-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: scale(1.03);
+    z-index: 2;
+  }
+  
+.btn-div{
+    width: 100%;
+ display: flex;
+ justify-content: space-between;
+ margin-bottom: 30px;
+}
+
+  .track-time-btn{
+     background-color: yellow;
+     width: 30%;
+     font-size: small;
+  }
+  .track-time-btn:hover{
+    background-color: yellow;
+  }
+
+  @media (max-width : 640px) {
+    .emp-project-cards {
+      grid-template-columns: 1fr;
+    }
+  }

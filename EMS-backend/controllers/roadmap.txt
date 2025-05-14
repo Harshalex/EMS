@@ -1,0 +1,24 @@
+User/Employee Routes (/api/users)
+
+GET /api/users: Get a list of users (employees). Should support queries for search (name, email), filter (department, status), and pagination (page, limit). Only return necessary fields for the table view.
+GET /api/users/:id: Get details for a single user (for edit forms).
+POST /api/users: Create a new user (employee). Requires admin role.
+PUT /api/users/:id: Update a user's details. Requires admin role.
+DELETE /api/users/:id: Delete a user. Requires admin role.
+Project Routes (/api/projects)
+
+GET /api/projects: Get a list of projects. Should support queries for search (projectName, client), filter (status), and pagination (page, limit). Populate teamMembers to include basic user info (like _id, name, avatarUrl) for display.
+GET /api/projects/:id: Get details for a single project (for edit forms). Populate teamMembers.
+POST /api/projects: Create a new project. Requires admin role.
+PUT /api/projects/:id: Update a project's details. Requires admin role.
+DELETE /api/projects/:id: Delete a project. Requires admin role.
+Time Entry Routes (/api/time-entries)
+
+POST /api/time-entries: Create a new time entry. Requires authentication.
+GET /api/time-entries: Get time entries. Useful for reports, but also for dashboard calculations. Support filtering by user, project, and date range.
+Dashboard Data Routes (/api/dashboard)
+
+GET /api/dashboard/summary: Return aggregated data: total employee count (from User model), total hours logged this month (aggregate TimeEntry for current month), count of active projects (filter Project by status).
+GET /api/dashboard/project-status-counts: Return counts of projects based on specific statuses like 'Behind Schedule', 'High Priority', 'Delayed'. (Filter Project model by status. 'Behind Schedule'/'Delayed' might require checking dueDate against the current date).
+GET /api/dashboard/weekly-hours-tracked: Return aggregated hours logged per day for a given date range (e.g., last 2 weeks). Aggregate TimeEntry by date.
+GET /api/dashboard/hours-by-project: Return aggregated hours logged per project category (or just per project name if categories aren't explicitly in the schema, and frontend groups them) for a given date range. Aggregate TimeEntry, potentially joining with Project.

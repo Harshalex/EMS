@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./login.css";
+import "../../constants/global.css";
 import { imagePath } from "../../constants/imagePath";
 import CustomButton from "../../components/CustomButton";
 import CustomInput from "../../components/CustomInput";
-import "../../constants/global.css";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
@@ -22,10 +22,11 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.log("HAndle Submit");
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:5000/auth/login",
+        "http://192.168.1.43:5000/auth/login",
         formData
       );
       const { token, sendUser: user } = res.data.result;
@@ -55,24 +56,26 @@ const Login = () => {
             </div>
 
             <h4 className="login-title">Employee Login</h4>
-
-            <CustomInput
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-              icon={imagePath.MessageIcon}
-            />
-
-            <CustomInput
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter your password"
-              icon={imagePath.Lock}
-            />
+            <div className="input-group">
+              <CustomInput
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email"
+                icon={imagePath.MessageIcon}
+              />
+            </div>
+            <div className="input-group">
+              <CustomInput
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                icon={imagePath.Lock}
+              />
+            </div>
 
             <div className="forgot-link">
               <a href="#">Forgot password?</a>
@@ -80,6 +83,7 @@ const Login = () => {
 
             <div className="login-button">
               <CustomButton
+                onClick={handleSubmit}
                 customstyle={"text-white login-btn"}
                 text={"Login"}
               />

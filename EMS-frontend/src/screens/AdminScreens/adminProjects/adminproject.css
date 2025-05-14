@@ -1,0 +1,48 @@
+
+.project-name {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.small-text{
+font-weight: 500;
+font-size: 15px;
+}
+
+.status{
+    padding-block: 8px;
+    padding-inline: 20px;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 30px;
+}
+
+.active-status{
+  background-color: rgba(198, 246, 213, 1);
+  color: teal;
+}
+
+.planning-status{
+   background-color: rgba(201, 220, 255, 1);
+   color: rgba(7, 93, 249, 1);
+}
+
+.on-hold-status{
+   background-color: rgba(227, 192, 192, 1);
+   color: rgba(228, 0, 0, 1);
+}
+.semi-font-bold{
+    font-weight: 600;
+}
+.edit-btn-project{
+    background-color: rgba(33, 86, 117, 1);
+    color: white;
+    padding: 4px 25px;
+    border-radius: 4.76px;
+}
+.edit-btn-project:hover{
+    background-color: rgb(9, 43, 63);
+    color: white;
+}

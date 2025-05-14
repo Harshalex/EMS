@@ -9,13 +9,14 @@ const userSchema = new mongoose.Schema({
     enum: ['admin', 'employee'],
     default: 'employee'
   },
-  department: { type: String }, 
+  department: { type: String },
   status: {
     type: String,
     enum: ['Active', 'Inactive'],
     default: 'Active'
   },
   avatarUrl: { type: String, default: '' },
+  lastLoggedIn: { type: Date }, 
   createdAt: { type: Date, default: Date.now }
 },{
     timestamps:true
@@ -24,3 +25,6 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("User",userSchema);
 
 export default User;
+
+
+

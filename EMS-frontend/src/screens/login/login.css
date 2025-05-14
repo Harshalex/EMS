@@ -1,5 +1,6 @@
 .login-container {
   min-height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,8 +11,9 @@
 .login-row {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
-  max-width: 1000px;
+  width: 80%;
+  height: 80%;
+  max-width: 1440px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -56,6 +58,10 @@
   font-size: 14px;
 }
 
+.login-btn{
+  width: 100%;
+}
+
 .login-button {
   margin: 20px 0;
   background-color:rgba(33, 86, 117, 1) ;
@@ -86,24 +92,31 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 40px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
 .login-right .background-img {
   width: 100%;
+  position: relative;
   object-fit: cover;
 }
 
 .second-img{
+  right: -18%;
+  bottom: 0; 
   position: absolute;
   z-index: 2;
-  right: -75px;
-  bottom: 0;
-  height: 90%;
+  height: 85%;
   object-fit: cover;
 }
+
+@media (max-width : 1024px) {
+  .login-right {
+   height: fit-content;
+  }
+}
+
 
 @media (min-width: 992px) {
   .login-right {

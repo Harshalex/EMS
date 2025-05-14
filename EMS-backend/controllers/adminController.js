@@ -92,5 +92,4 @@ const getEmployeeById = async (req, res) => {
     }
   };
   
-
 export {getAllEmployee,createEmployee,deleteEmployee,updateEmployee,getEmployeeById}
